@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+        document.addEventListener("DOMContentLoaded",() =>{
+            document.querySelector('#button').disabled=true;
+            //document.getSelector('#button').disabled=true;
+    
+
+            document.querySelector('#task').onkeyup = () => {  // it will only submit when we have clicked on input field (keyup)
+                
+            
+            if (document.querySelector('#task').value.length > 0)
+                document.querySelector('#button').disabled=false;
+            else
+                document.querySelector('#button').disabled=true;
+            };
+
+            document.querySelector('#new-task').onsubmit = function(){
+                const li = document.createElement('li');
+                li.innerHTML = document.querySelector('#task').value;
+
+                document.querySelector('#tasks').append(li);
+                document.querySelector('#task').value="";
+                document.querySelector('#button').disabled=true;
+
+                return false; // to disable submit button
+            };
+        });
+    </script>
+</head>
+<body>
+    <h1>Tasks</h1>
+    <ul id = "tasks">
+    </ul>
+    <form id = "new-task">
+        <input id = "task" placeholder="Enter Task" type ="text">
+        <input id="button" type="submit">
+    </form>
+</body>
+</html>
